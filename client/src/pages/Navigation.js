@@ -1,0 +1,81 @@
+import React, { Component, useContext } from "react";
+import { NavLink } from "react-router-dom";
+import * as ROUTES from "../constants/routes";
+import { Context } from "../context";
+
+export class Navigation extends Component {
+  static contextType = Context;
+  render() {
+    const { userData } = this.context;
+    return (
+      <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+        <NavLink className="navbar-brand" to="/">
+          <b>UrlShortner</b>
+        </NavLink>
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
+
+        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          {userData.token ? <AuthNavbar /> : <NonAuthNavbar />}
+        </div>
+      </nav>
+    );
+  }
+}
+
+const AuthNavbar = () => (
+  <ul className="navbar-nav m-auto">
+    <li className="nav-item">
+      <NavLink className="nav-link" to={ROUTES.HOME_PAGE}>
+        Home <span className="sr-only">(current)</span>
+      </NavLink>
+    </li>
+    <li className="nav-item">
+      <NavLink className="nav-link" to={ROUTES.SHORTEN}>
+        Shorten <span className="sr-only"></span>
+      </NavLink>
+    </li>
+    <li className="nav-item">
+      <NavLink className="nav-link" to={ROUTES.ALL_SHORTEN}>
+        List All
+      </NavLink>
+    </li>
+
+    <li className="nav-item">
+      <a href="/" className="nav-link" >
+        SignOut
+      </a>
+    </li>
+  </ul>
+);
+const NonAuthNavbar = () => (
+  <ul className="navbar-nav m-auto">
+    <li className="nav-item active">
+      <NavLink className="nav-link" to={ROUTES.HOME_PAGE}>
+        Home <span className="sr-only">(current)</span>
+      </NavLink>
+    </li>
+    <li className="nav-item">
+      <NavLink className="nav-link" to={ROUTES.SIGN_IN}>
+        Sign In
+      </NavLink>
+    </li>
+
+    <li className="nav-item">
+      <NavLink className="nav-link" to={ROUTES.SIGN_UP}>
+        Sign Up
+      </NavLink>
+    </li>
+  </ul>
+);
+
+export default Navigation;
