@@ -2,6 +2,8 @@ import React, { Component, useContext } from "react";
 import axios from "axios";
 import { Context } from "../context";
 import { withRouter } from "react-router-dom";
+import { setUserSession } from "../utils/Common";
+
 export class SignUpPage extends Component {
   static contextType = Context;
   constructor(props) {
@@ -27,64 +29,68 @@ export class SignUpPage extends Component {
         password: this.state.password,
       })
       .then((resp) => {
-          if (resp.data.error) {
-            this.setState({ error: resp.data.error });
-          } else {
-            settingState(resp.data.token, resp.data.userid);
-            
-            this.props.history.push("/");
-          }
+        if (resp.data.error) {
+          this.setState({ error: resp.data.error });
+        } else {
+          setUserSession(resp.data.token, resp.data.user);
+          settingState(true, resp.data.user.name, resp.data.user._id);
+          this.props.history.push("/");
+        }
       });
   };
-componentWillUnmount(){
-  this.setState({ name: "", email: "", password: "", error: "" });
-}
+  componentWillUnmount() {
+    this.setState({ name: "", email: "", password: "", error: "" });
+  }
 
   render() {
     return (
       <div className="App-header">
         <h1>Sign Up</h1>
         <form onSubmit={this.handleSubmit}>
-          <label>
-            Name :
+          <div className="form-group form-inline">
+            <label>Name :</label>
             <input
               type="text"
               name="name"
-              className="mx-2"
+              className="mx-2 form-control"
               onChange={this.handleChange}
               value={this.state.name}
               placeholder="Enter your name"
             />
-          </label>
-          <br />
-          <label>
-            E-mail :
+          </div>
+          <div className="form-group form-inline">
+            <label>E-mail :</label>
             <input
               type="text"
               name="email"
-              className="mx-2"
+              className="mx-2 form-control"
               onChange={this.handleChange}
               value={this.state.email}
               placeholder="Enter your email"
             />
-          </label>
-          <br />
-          <label>
-            Password :{" "}
+          </div>
+          <div className="form-group form-inline">
+            <label>Password : </label>
             <input
               type="password"
               name="password"
               onChange={this.handleChange}
               value={this.state.password}
-              className="mx-1"
+              className="mx-2 form-control"
               placeholder="Enter the password"
             />
-          </label>
-          <br />
-          <button type="submit" className="text-center">
+          </div>
+          <button
+            type="submit"
+            className="text-center btn btn-outline-dark btn-block mt-3"
+          >
             Sign Up
-          </button>{" "}
-          {this.state.error}
+          </button>
+          <div className="mt-2">
+            <small className="text-danger text-center">
+              {this.state.error}
+            </small>
+          </div>
         </form>
       </div>
     );

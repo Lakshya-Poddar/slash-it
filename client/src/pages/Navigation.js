@@ -1,12 +1,13 @@
 import React, { Component, useContext } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, withRouter } from "react-router-dom";
 import * as ROUTES from "../constants/routes";
+import { removeUserSession, getUser } from "../utils/Common";
 import { Context } from "../context";
 
 export class Navigation extends Component {
   static contextType = Context;
   render() {
-    const { token } = this.context;
+    const { logged, username } = this.context;
     return (
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <NavLink className="navbar-brand" to="/">
@@ -24,39 +25,59 @@ export class Navigation extends Component {
           <span className="navbar-toggler-icon"></span>
         </button>
 
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          {token ? <AuthNavbar /> : <NonAuthNavbar />}
+        <div
+          className="collapse navbar-collapse text-center"
+          id="navbarSupportedContent"
+        >
+          {logged ? <AuthNavbarBase logout={this.logout} /> : <NonAuthNavbar />}
         </div>
+        <p className="text-light text-uppercase d-none d-md-block d-lg-block">
+          {username ? username : ""}
+        </p>
       </nav>
     );
   }
 }
 
-const AuthNavbar = () => (
-  <ul className="navbar-nav m-auto">
-    <li className="nav-item">
-      <NavLink className="nav-link" to={ROUTES.HOME_PAGE}>
-        Home <span className="sr-only">(current)</span>
-      </NavLink>
-    </li>
-    <li className="nav-item">
-      <NavLink className="nav-link" to={ROUTES.SHORTEN}>
-        Shorten <span className="sr-only"></span>
-      </NavLink>
-    </li>
-    <li className="nav-item">
-      <NavLink className="nav-link" to={ROUTES.ALL_SHORTEN}>
-        List All
-      </NavLink>
-    </li>
+const AuthNavbar = (props) => {
+  const { settingState } = useContext(Context);
+  return (
+    <ul className="navbar-nav m-auto">
+      <li className="nav-item">
+        <NavLink className="nav-link" to={ROUTES.HOME_PAGE}>
+          Home <span className="sr-only">(current)</span>
+        </NavLink>
+      </li>
+      <li className="nav-item">
+        <NavLink className="nav-link" to={ROUTES.SHORTEN}>
+          Shorten <span className="sr-only"></span>
+        </NavLink>
+      </li>
+      <li className="nav-item">
+        <NavLink className="nav-link" to={ROUTES.ALL_SHORTEN}>
+          List All
+        </NavLink>
+      </li>
 
-    <li className="nav-item">
-      <a href="/" className="nav-link" >
-        SignOut
-      </a>
-    </li>
-  </ul>
-);
+      <li className="nav-item">
+        <NavLink
+          onClick={() => {
+            removeUserSession();
+            settingState(false, "", "");
+            props.history.push("/");
+          }}
+          to={ROUTES.HOME_PAGE}
+          className="nav-link"
+        >
+          Sign Out
+        </NavLink>
+      </li>
+    </ul>
+  );
+};
+
+const AuthNavbarBase = withRouter(AuthNavbar);
+
 const NonAuthNavbar = () => (
   <ul className="navbar-nav m-auto">
     <li className="nav-item active">
@@ -78,4 +99,4 @@ const NonAuthNavbar = () => (
   </ul>
 );
 
-export default Navigation;
+export default withRouter(Navigation);

@@ -1,5 +1,6 @@
 import React, { Component, useContext } from "react";
 import { Context } from "../context";
+import { setUserSession } from "../utils/Common";
 import Axios from "axios";
 export class SignInPage extends Component {
   static contextType = Context;
@@ -9,7 +10,7 @@ export class SignInPage extends Component {
     this.state = {
       email: "",
       password: "",
-      error:""
+      error: "",
     };
   }
 
@@ -18,55 +19,64 @@ export class SignInPage extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     const { settingState } = this.context;
-    Axios.post('http://localhost:5000/login',{email:this.state.email,password:this.state.password})
-    .then((resp)=>{
+    Axios.post("http://localhost:5000/login", {
+      email: this.state.email,
+      password: this.state.password,
+    }).then((resp) => {
       if (resp.data.error) {
-        this.setState({ error: resp.data.error });
+        this.setState({ error: resp.data.error, password: "" });
       } else {
-        settingState(resp.data.token, resp.data.userid);
-        
+        setUserSession(resp.data.token, resp.data.user);
+        settingState(true, resp.data.user.name, resp.data.user._id);
         this.props.history.push("/");
       }
-    })
+    });
   };
+
   componentWillUnmount() {
     this.setState({ name: "", email: "", password: "", error: "" });
   }
-  
+
   render() {
     return (
-      <div className="App-header">
+      <div className="App-header text-center">
         <h1>Sign In</h1>
         <form onSubmit={this.handleSubmit}>
-          <label>
-            E-mail :
+          <div className="form-group form-inline">
+            <label>E-mail :</label>
             <input
               type="text"
               name="email"
-              className="mx-2"
+              className="mx-2 form-control"
               onChange={this.handleChange}
               value={this.state.email}
               placeholder="Enter your email"
             />
-          </label>
-          <br />
-          <label>
-            Password :
+          </div>
+          <div className="form-group form-inline">
+            <label>Password :</label>
             <input
               type="password"
               name="password"
               onChange={this.handleChange}
               value={this.state.password}
-              className="mx-1"
+              className="mx-2 form-control"
               placeholder="Enter the password"
             />
-          </label>
-          <br />
-          <button type="submit" className="text-center">
+          </div>
+          <button
+            type="submit"
+            className="text-center btn btn-outline-dark btn-block mt-3"
+          >
             Sign In
-          </button>{" "}
-          {this.state.error}
+          </button>
+          <div className="mt-2">
+            <small className="text-danger text-center">
+              {this.state.error}
+            </small>
+          </div>
         </form>
+        
       </div>
     );
   }

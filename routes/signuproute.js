@@ -3,6 +3,7 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const cors = require('cors')
 //Login Verification
 const verify = require("./verifyToken");
 //User Schema
@@ -11,6 +12,7 @@ const USER = require("../schemas/userschema");
 //@route singup/test
 //@desc test route
 //@Verified access
+router.use(cors())
 router.get("/test", verify, (req, res) => {
   res.send("TEST SUCCESSFUL");
 });
@@ -22,7 +24,7 @@ router.post("/", (req, res) => {
   USER.findOne({ email: req.body.email }, async (err, doc) => {
     if (doc)
     {
-      return res.json({ id: null, error: "EMAIL ALREADY EXISTS", token: null });
+      return res.json({ user: null, error: "EMAIL ALREADY EXISTS", token: null });
     }
      
 
@@ -41,12 +43,12 @@ router.post("/", (req, res) => {
         res
           .header("auth-shorten-token", token)
           .status(200)
-          .json({ id: user._id, error: null, token: token }); //token sending to be removed
+          .json({ user: user, error: null, token: token }); //token sending to be removed
       })
       .catch((err) => {
         console.log("err", err); //console out here
         res.status(200).json({
-          id: null,
+          user: null,
           error: "THERE WAS THE ERROR WITH THE SERVER, PLEASE TRY AGAIN LATER",
           token: null,
         });

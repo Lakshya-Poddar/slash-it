@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import "./App.css";
 import HomePage from "./pages/HomePage";
 import ListShorten from "./pages/ListShorten";
@@ -9,10 +9,9 @@ import ErrorPage from "./pages/ErrorPage";
 import { Route, Switch } from "react-router-dom";
 import Navigation from "./pages/Navigation";
 import * as ROUTES from "./constants/routes";
-//import {Context} from './context'
 
 function App() {
-  // const {say}=useContext(Context);
+
   return (
     <div>
       <Navigation />

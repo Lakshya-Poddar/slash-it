@@ -35,7 +35,7 @@ router.post("/", async (req, res) => {
       .status(200)
       .json({
         id: null,
-        error: "EMAIL* IS INCORRECT",
+        error: "*Incorrect Credentials",
         token: null,
       });
   //checking password
@@ -45,16 +45,16 @@ router.post("/", async (req, res) => {
       .status(200)
       .json({
         id: null,
-        error: "PASSWORD* IS INCORRECT",
+        error: "*Incorrect Credentials",
         token: null,
       });
 
   //Create and sign a token
   const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET);
+  //.header("auth-shorten-token", token)
   res
-    .header("auth-shorten-token", token)
     .status(200)
-    .json({ id: user._id, error: null, token: token }); 
+    .json({ user: user, error: null, token: token }); 
 });
 
 module.exports = router;
