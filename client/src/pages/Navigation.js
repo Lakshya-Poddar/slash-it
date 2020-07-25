@@ -6,7 +6,7 @@ import { Context } from "../context";
 export class Navigation extends Component {
   static contextType = Context;
   render() {
-    const { userData } = this.context;
+    const { token } = this.context;
     return (
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <NavLink className="navbar-brand" to="/">
@@ -25,7 +25,7 @@ export class Navigation extends Component {
         </button>
 
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          {userData.token ? <AuthNavbar /> : <NonAuthNavbar />}
+          {token ? <AuthNavbar /> : <NonAuthNavbar />}
         </div>
       </nav>
     );

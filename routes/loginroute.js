@@ -32,25 +32,25 @@ router.post("/", async (req, res) => {
   const user = await USER.findOne({ email: email });
   if (!user)
     return res
-      .status(400)
+      .status(200)
       .json({
         id: null,
-        error: "EMAIL* OR PASSWORD IS INCORRECT",
+        error: "EMAIL* IS INCORRECT",
         token: null,
       });
   //checking password
   const validpass = await bcrypt.compare(password, user.password);
   if (!validpass)
     return res
-      .status(400)
+      .status(200)
       .json({
         id: null,
-        error: "EMAIL OR PASSWORD* IS INCORRECT",
+        error: "PASSWORD* IS INCORRECT",
         token: null,
       });
 
   //Create and sign a token
-  const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET, {expiresIn: "1hr"});
+  const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET);
   res
     .header("auth-shorten-token", token)
     .status(200)

@@ -21,9 +21,10 @@ router.get("/test", verify, (req, res) => {
 router.post("/", (req, res) => {
   USER.findOne({ email: req.body.email }, async (err, doc) => {
     if (doc)
-      return res
-        .status(400)
-        .json({ id: null, error: "EMAIL ALREADY EXISTS", token: null });
+    {
+      return res.json({ id: null, error: "EMAIL ALREADY EXISTS", token: null });
+    }
+     
 
     //hashing password
     const salt = await bcrypt.genSalt(10);
@@ -36,9 +37,7 @@ router.post("/", (req, res) => {
     User.save()
       .then((user) => {
         console.log("resp", user); //console out here
-        const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET, {
-          expiresIn: "1hr",
-        });
+        const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET);
         res
           .header("auth-shorten-token", token)
           .status(200)
@@ -46,7 +45,7 @@ router.post("/", (req, res) => {
       })
       .catch((err) => {
         console.log("err", err); //console out here
-        res.status(400).json({
+        res.status(200).json({
           id: null,
           error: "THERE WAS THE ERROR WITH THE SERVER, PLEASE TRY AGAIN LATER",
           token: null,

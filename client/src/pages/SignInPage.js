@@ -1,12 +1,15 @@
-import React, { Component } from "react";
-
+import React, { Component, useContext } from "react";
+import { Context } from "../context";
+import Axios from "axios";
 export class SignInPage extends Component {
+  static contextType = Context;
   constructor(props) {
     super(props);
 
     this.state = {
       email: "",
       password: "",
+      error:""
     };
   }
 
@@ -14,8 +17,22 @@ export class SignInPage extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log("e", this.state.email , this.state.password);
+    const { settingState } = this.context;
+    Axios.post('http://localhost:5000/login',{email:this.state.email,password:this.state.password})
+    .then((resp)=>{
+      if (resp.data.error) {
+        this.setState({ error: resp.data.error });
+      } else {
+        settingState(resp.data.token, resp.data.userid);
+        
+        this.props.history.push("/");
+      }
+    })
   };
+  componentWillUnmount() {
+    this.setState({ name: "", email: "", password: "", error: "" });
+  }
+  
   render() {
     return (
       <div className="App-header">
@@ -32,7 +49,7 @@ export class SignInPage extends Component {
               placeholder="Enter your email"
             />
           </label>
-          <br/>
+          <br />
           <label>
             Password :
             <input
@@ -43,8 +60,12 @@ export class SignInPage extends Component {
               className="mx-1"
               placeholder="Enter the password"
             />
-          </label><br />
-          <button type="submit" className="text-center">Sign In</button>
+          </label>
+          <br />
+          <button type="submit" className="text-center">
+            Sign In
+          </button>{" "}
+          {this.state.error}
         </form>
       </div>
     );

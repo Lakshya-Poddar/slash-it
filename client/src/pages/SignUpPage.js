@@ -1,6 +1,9 @@
-import React, { Component } from "react";
-
+import React, { Component, useContext } from "react";
+import axios from "axios";
+import { Context } from "../context";
+import { withRouter } from "react-router-dom";
 export class SignUpPage extends Component {
+  static contextType = Context;
   constructor(props) {
     super(props);
 
@@ -8,15 +11,35 @@ export class SignUpPage extends Component {
       name: "",
       email: "",
       password: "",
+      error: "",
     };
   }
 
   handleChange = (e) => this.setState({ [e.target.name]: e.target.value });
 
   handleSubmit = (e) => {
+    const { settingState } = this.context;
     e.preventDefault();
-    console.log("e", this.state.email, this.state.password);
+    axios
+      .post("http://localhost:5000/signup", {
+        name: this.state.name,
+        email: this.state.email,
+        password: this.state.password,
+      })
+      .then((resp) => {
+          if (resp.data.error) {
+            this.setState({ error: resp.data.error });
+          } else {
+            settingState(resp.data.token, resp.data.userid);
+            
+            this.props.history.push("/");
+          }
+      });
   };
+componentWillUnmount(){
+  this.setState({ name: "", email: "", password: "", error: "" });
+}
+
   render() {
     return (
       <div className="App-header">
@@ -60,11 +83,12 @@ export class SignUpPage extends Component {
           <br />
           <button type="submit" className="text-center">
             Sign Up
-          </button>
+          </button>{" "}
+          {this.state.error}
         </form>
       </div>
     );
   }
 }
 
-export default SignUpPage;
+export default withRouter(SignUpPage);

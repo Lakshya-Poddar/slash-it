@@ -8,13 +8,16 @@ export class ContextProvider extends Component {
 
     this.state = {
       say: "HI",
-      userData:{token:null}
+      token:"",
+      userid:""
     };
   }
-
+  settingState=(token,userid)=>{
+    this.setState({token,userid})
+  }
   render() {
     return (
-      <Context.Provider value={{ ...this.state }}>
+      <Context.Provider value={{ ...this.state,settingState:this.settingState }}>
         {this.props.children}
       </Context.Provider>
     );
