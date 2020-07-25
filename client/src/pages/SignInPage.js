@@ -2,6 +2,9 @@ import React, { Component, useContext } from "react";
 import { Context } from "../context";
 import { setUserSession } from "../utils/Common";
 import Axios from "axios";
+import { Link } from "react-router-dom";
+import * as ROUTES from "../constants/routes";
+
 export class SignInPage extends Component {
   static contextType = Context;
   constructor(props) {
@@ -40,7 +43,10 @@ export class SignInPage extends Component {
   render() {
     return (
       <div className="App-header text-center">
-        <h1>Sign In</h1>
+        <h1 className="mb-3">Sign In</h1>
+        <div className="my-2">
+          <small className="text-danger text-center">{this.state.error}</small>
+        </div>
         <form onSubmit={this.handleSubmit}>
           <div className="form-group form-inline">
             <label>E-mail :</label>
@@ -64,19 +70,22 @@ export class SignInPage extends Component {
               placeholder="Enter the password"
             />
           </div>
+
           <button
             type="submit"
             className="text-center btn btn-outline-dark btn-block mt-3"
           >
             Sign In
           </button>
-          <div className="mt-2">
-            <small className="text-danger text-center">
-              {this.state.error}
+
+          <div className="my-1">
+            <small className="text-left">
+              New here? <Link to={ROUTES.SIGN_UP}>Sign Up</Link>
             </small>
           </div>
+
+          <div></div>
         </form>
-        
       </div>
     );
   }

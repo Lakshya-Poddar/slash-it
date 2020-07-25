@@ -1,7 +1,7 @@
 import React, { Component, useContext } from "react";
 import { NavLink, withRouter } from "react-router-dom";
 import * as ROUTES from "../constants/routes";
-import { removeUserSession, getUser } from "../utils/Common";
+import { removeUserSession } from "../utils/Common";
 import { Context } from "../context";
 
 export class Navigation extends Component {

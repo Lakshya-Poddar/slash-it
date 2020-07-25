@@ -1,8 +1,9 @@
 import React, { Component, useContext } from "react";
 import axios from "axios";
 import { Context } from "../context";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import { setUserSession } from "../utils/Common";
+import * as ROUTES from "../constants/routes";
 
 export class SignUpPage extends Component {
   static contextType = Context;
@@ -13,6 +14,7 @@ export class SignUpPage extends Component {
       name: "",
       email: "",
       password: "",
+      confrim: "",
       error: "",
     };
   }
@@ -39,13 +41,16 @@ export class SignUpPage extends Component {
       });
   };
   componentWillUnmount() {
-    this.setState({ name: "", email: "", password: "", error: "" });
+    this.setState({ name: "", email: "", password: "", error: "",confirm:"" });
   }
 
   render() {
     return (
-      <div className="App-header">
-        <h1>Sign Up</h1>
+      <div className="App-header text-center">
+        <h1 className="mb-3">Sign Up</h1>
+        <div className="my-2">
+          <small className="text-danger text-center">{this.state.error}</small>
+        </div>
         <form onSubmit={this.handleSubmit}>
           <div className="form-group form-inline">
             <label>Name :</label>
@@ -80,15 +85,26 @@ export class SignUpPage extends Component {
               placeholder="Enter the password"
             />
           </div>
+          <div className="form-group form-inline">
+            <label>Confirm : </label>
+            <input
+              type="password"
+              name="confirm"
+              onChange={this.handleChange}
+              value={this.state.confirm}
+              className="mx-2 form-control"
+              placeholder="Confirm password"
+            />
+          </div>
           <button
             type="submit"
             className="text-center btn btn-outline-dark btn-block mt-3"
           >
             Sign Up
           </button>
-          <div className="mt-2">
-            <small className="text-danger text-center">
-              {this.state.error}
+          <div className="my-1">
+            <small className="text-left">
+              Already signed up? <Link to={ROUTES.SIGN_IN}>Log in</Link>
             </small>
           </div>
         </form>
