@@ -33,7 +33,8 @@ export class SignInPage extends Component {
         settingState(true, resp.data.user.name, resp.data.user._id);
         this.props.history.push("/");
       }
-    });
+    })
+    .catch((err)=>this.setState({error:err}))
   };
 
   componentWillUnmount() {
@@ -73,7 +74,7 @@ export class SignInPage extends Component {
 
           <button
             type="submit"
-            className="text-center btn btn-outline-dark btn-block mt-3"
+            className="text-center btn btn-outline-danger btn-block mt-3"
           >
             Sign In
           </button>

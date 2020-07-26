@@ -34,7 +34,7 @@ router.post("/", async (req, res) => {
     return res
       .status(200)
       .json({
-        id: null,
+        user: null,
         error: "*Incorrect Credentials",
         token: null,
       });
@@ -44,7 +44,7 @@ router.post("/", async (req, res) => {
     return res
       .status(200)
       .json({
-        id: null,
+        user: null,
         error: "*Incorrect Credentials",
         token: null,
       });
@@ -54,7 +54,7 @@ router.post("/", async (req, res) => {
   //.header("auth-shorten-token", token)
   res
     .status(200)
-    .json({ user: user, error: null, token: token }); 
+    .json({ user: {_id:user._id,name:user.name,email:user.email}, error: null, token: token }); 
 });
 
 module.exports = router;

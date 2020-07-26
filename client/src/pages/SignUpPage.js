@@ -5,6 +5,7 @@ import { withRouter, Link } from "react-router-dom";
 import { setUserSession } from "../utils/Common";
 import * as ROUTES from "../constants/routes";
 
+
 export class SignUpPage extends Component {
   static contextType = Context;
   constructor(props) {
@@ -14,11 +15,11 @@ export class SignUpPage extends Component {
       name: "",
       email: "",
       password: "",
-      confrim: "",
+      confirm: "",
       error: "",
     };
   }
-
+  
   handleChange = (e) => this.setState({ [e.target.name]: e.target.value });
 
   handleSubmit = (e) => {
@@ -38,10 +39,17 @@ export class SignUpPage extends Component {
           settingState(true, resp.data.user.name, resp.data.user._id);
           this.props.history.push("/");
         }
-      });
+      })
+      .catch((err) => this.setState({ error: err }));
   };
   componentWillUnmount() {
-    this.setState({ name: "", email: "", password: "", error: "",confirm:"" });
+    this.setState({
+      name: "",
+      email: "",
+      password: "",
+      error: "",
+      confirm: "",
+    });
   }
 
   render() {
@@ -53,7 +61,7 @@ export class SignUpPage extends Component {
         </div>
         <form onSubmit={this.handleSubmit}>
           <div className="form-group form-inline">
-            <label>Name :</label>
+            <label>Name* :</label>
             <input
               type="text"
               name="name"
@@ -62,9 +70,10 @@ export class SignUpPage extends Component {
               value={this.state.name}
               placeholder="Enter your name"
             />
+            
           </div>
           <div className="form-group form-inline">
-            <label>E-mail :</label>
+            <label>E-mail* :</label>
             <input
               type="text"
               name="email"
@@ -75,7 +84,7 @@ export class SignUpPage extends Component {
             />
           </div>
           <div className="form-group form-inline">
-            <label>Password : </label>
+            <label>Password* : </label>
             <input
               type="password"
               name="password"
@@ -86,7 +95,7 @@ export class SignUpPage extends Component {
             />
           </div>
           <div className="form-group form-inline">
-            <label>Confirm : </label>
+            <label>Confirm* : </label>
             <input
               type="password"
               name="confirm"
@@ -98,13 +107,13 @@ export class SignUpPage extends Component {
           </div>
           <button
             type="submit"
-            className="text-center btn btn-outline-dark btn-block mt-3"
+            className="text-center btn btn-outline-danger btn-block mt-3"
           >
             Sign Up
           </button>
           <div className="my-1">
             <small className="text-left">
-              Already signed up? <Link to={ROUTES.SIGN_IN}>Log in</Link>
+              Already signed up? <Link to={ROUTES.SIGN_IN}>Sign in</Link>
             </small>
           </div>
         </form>

@@ -38,12 +38,12 @@ router.post("/", (req, res) => {
     });
     User.save()
       .then((user) => {
-        console.log("resp", user); //console out here
+        //console.log("resp", user); //console out here
         const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET);
         res
           .header("auth-shorten-token", token)
           .status(200)
-          .json({ user: user, error: null, token: token }); //token sending to be removed
+          .json({ user: {_id:user._id,name:user.name,email:user.email}, error: null, token: token }); //token sending to be removed
       })
       .catch((err) => {
         console.log("err", err); //console out here
