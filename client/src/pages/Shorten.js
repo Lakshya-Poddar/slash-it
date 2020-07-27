@@ -31,7 +31,7 @@ export class Shorten extends Component {
     );
     axios
       .post(
-        "http://localhost:5000/shorten/",
+        "/shorten",
         { hash: this.state.hash, longUrl: this.state.longUrl },
         { headers: { "auth-shorten-token": getToken() } }
       )
@@ -92,7 +92,8 @@ export class Shorten extends Component {
           <div className="form-group form-inline">
             <label>Long Url :</label>
             <input
-              type="text"
+              type="url"
+              required
               name="longUrl"
               className="mx-2 form-control"
               onChange={this.handleChange}
@@ -101,7 +102,7 @@ export class Shorten extends Component {
             />
           </div>
           <div className="form-group form-inline">
-            <label>Preferred Hash* :</label>
+            <label>Preferred Hash<span className="text-danger"> *</span> :</label>
             <input
               type="text"
               name="hash"

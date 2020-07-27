@@ -31,8 +31,8 @@ export class Navigation extends Component {
         >
           {logged ? <AuthNavbarBase logout={this.logout} /> : <NonAuthNavbar />}
         </div>
-        <p className="text-light text-uppercase d-none d-md-block d-lg-block">
-          {username ? username : ""}
+        <p className="text-light text-capitalize d-none d-md-block d-lg-block">
+          {username ?  `Hello! ${username}` : ""}
         </p>
       </nav>
     );

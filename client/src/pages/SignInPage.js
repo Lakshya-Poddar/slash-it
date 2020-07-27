@@ -22,7 +22,7 @@ export class SignInPage extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     const { settingState } = this.context;
-    Axios.post("http://localhost:5000/login", {
+    Axios.post("/login", {
       email: this.state.email,
       password: this.state.password,
     }).then((resp) => {
@@ -52,8 +52,9 @@ export class SignInPage extends Component {
           <div className="form-group form-inline">
             <label>E-mail :</label>
             <input
-              type="text"
+              type="email"
               name="email"
+              required
               className="mx-2 form-control"
               onChange={this.handleChange}
               value={this.state.email}
@@ -65,6 +66,7 @@ export class SignInPage extends Component {
             <input
               type="password"
               name="password"
+              required
               onChange={this.handleChange}
               value={this.state.password}
               className="mx-2 form-control"

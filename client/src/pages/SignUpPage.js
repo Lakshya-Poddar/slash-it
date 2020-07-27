@@ -26,7 +26,7 @@ export class SignUpPage extends Component {
     const { settingState } = this.context;
     e.preventDefault();
     axios
-      .post("http://localhost:5000/signup", {
+      .post("/signup", {
         name: this.state.name,
         email: this.state.email,
         password: this.state.password,
@@ -61,7 +61,7 @@ export class SignUpPage extends Component {
         </div>
         <form onSubmit={this.handleSubmit}>
           <div className="form-group form-inline">
-            <label>Name* :</label>
+            <label>Name :</label>
             <input
               type="text"
               name="name"
@@ -73,10 +73,11 @@ export class SignUpPage extends Component {
             
           </div>
           <div className="form-group form-inline">
-            <label>E-mail* :</label>
+            <label>E-mail<span className="text-danger"> *</span> :</label>
             <input
-              type="text"
+              type="email"
               name="email"
+              required
               className="mx-2 form-control"
               onChange={this.handleChange}
               value={this.state.email}
@@ -84,10 +85,11 @@ export class SignUpPage extends Component {
             />
           </div>
           <div className="form-group form-inline">
-            <label>Password* : </label>
+            <label>Password<span className="text-danger"> *</span> : </label>
             <input
               type="password"
               name="password"
+              required
               onChange={this.handleChange}
               value={this.state.password}
               className="mx-2 form-control"
@@ -95,10 +97,11 @@ export class SignUpPage extends Component {
             />
           </div>
           <div className="form-group form-inline">
-            <label>Confirm* : </label>
+            <label>Confirm<span className="text-danger"> *</span> : </label>
             <input
               type="password"
               name="confirm"
+              required
               onChange={this.handleChange}
               value={this.state.confirm}
               className="mx-2 form-control"

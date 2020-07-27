@@ -15,7 +15,7 @@ export class ListShorten extends Component {
 
   componentDidMount() {
     axios
-      .get("http://localhost:5000/shorten/list", {
+      .get("/shorten/list", {
         headers: { "auth-shorten-token": getToken() },
       })
       .then((resp) => {
@@ -68,7 +68,7 @@ export class ListShorten extends Component {
 const EachItem = ({ hash, url }) => (
   <div className="list-group-item list-group-item-action flex-column align-items-center active">
     <div className="d-flex w-75 justify-content-between">
-      <a href={`http://localhost:5000/${hash}`} className="mb-1">{`http://localhost:5000/${hash}`}</a>
+      <a href={`http://localhost:5000/${hash}`} target="_blank" className="mb-1">{`http://localhost:5000/${hash}`}</a>
       <small>3 days ago</small>
     </div>
     <p className="mb-1">
