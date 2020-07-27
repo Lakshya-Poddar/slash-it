@@ -20,25 +20,7 @@ mongoose
   .connect(process.env.MONGO_URI, { useNewUrlParser: true })
   .then(() => console.log("CONNECTED TO MONGODB"))
   .catch((err) => console.log(err));
-//routing every one accessing the server
-app.get("/:hash", (req, res) => {
-  const id = req.params.hash;
-  URL.findOne({ hashed: id }, (err, doc) => {
-    if (doc) {
-      console.log(doc);
-      return res.redirect(doc.longUrl);
-    }
-    else
-    {
-      if (process.env.NODE_ENV === "production") {
-        app.use(express.static("client/build"));
-        app.get("*", (req, res) => {
-          res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
-        });
-      }
-    }
-  });
-});
+
 
 //routes signup
 const singuproute = require("./routes/signuproute");
@@ -52,7 +34,25 @@ app.use("/login", loginroute);
 const shortenroute = require("./routes/shortenroute");
 app.use("/shorten", shortenroute);
 
-
+//routing every one accessing the server
+// app.get("/:hash", (req, res) => {
+//   const id = req.params.hash;
+//   URL.findOne({ hashed: id }, (err, doc) => {
+//     if (doc) {
+//       console.log(doc);
+//       return res.redirect(doc.longUrl);
+//     }
+//     else
+//     {
+//       if (process.env.NODE_ENV === "production") {
+//         app.use(express.static("client/build"));
+//         app.get("*", (req, res) => {
+//           res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+//         });
+//       }
+//     }
+//   });
+// });
 
 //serve static assets if in production
 if (process.env.NODE_ENV === "production") {
