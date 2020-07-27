@@ -20,20 +20,6 @@ mongoose
   .connect(process.env.MONGO_URI, { useNewUrlParser: true })
   .then(() => console.log("CONNECTED TO MONGODB"))
   .catch((err) => console.log(err));
-
-
-//routes signup
-const singuproute = require("./routes/signuproute");
-app.use("/signup", singuproute);
-
-//routes login
-const loginroute = require("./routes/loginroute");
-app.use("/login", loginroute);
-
-//routes shorten
-const shortenroute = require("./routes/shortenroute");
-app.use("/shorten", shortenroute);
-
 //routing every one accessing the server
 app.get("/:hash", (req, res) => {
   const id = req.params.hash;
@@ -53,6 +39,20 @@ app.get("/:hash", (req, res) => {
     }
   });
 });
+
+//routes signup
+const singuproute = require("./routes/signuproute");
+app.use("/signup", singuproute);
+
+//routes login
+const loginroute = require("./routes/loginroute");
+app.use("/login", loginroute);
+
+//routes shorten
+const shortenroute = require("./routes/shortenroute");
+app.use("/shorten", shortenroute);
+
+
 
 //serve static assets if in production
 if (process.env.NODE_ENV === "production") {
