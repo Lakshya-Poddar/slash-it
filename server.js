@@ -21,10 +21,6 @@ mongoose
   .then(() => console.log("CONNECTED TO MONGODB"))
   .catch((err) => console.log(err));
 
-//home page
-app.get("/", (req, res) => {
-  res.send("<p>WELCOME TO URL SHORTNER</p>");
-});
 
 //routes signup
 const singuproute = require("./routes/signuproute");
