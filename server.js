@@ -45,8 +45,6 @@ app.get("/:hash", (req, res) => {
     if (doc) {
       console.log(doc);
       return res.redirect(doc.longUrl);
-    } else {
-      res.redirect("/");
     }
   });
 });
