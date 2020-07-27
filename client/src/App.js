@@ -1,5 +1,6 @@
 import React from "react";
 import "./App.css";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
 import HomePage from "./pages/HomePage";
 import ListShorten from "./pages/ListShorten";
 import Shorten from "./pages/Shorten";

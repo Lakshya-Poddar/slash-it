@@ -3,6 +3,7 @@ import axios from "axios";
 import { getToken } from "../utils/Common";
 import { Link } from "react-router-dom";
 import * as ROUTES from "../constants/routes";
+import Loader from 'react-loader-spinner'
 
 export class Shorten extends Component {
   constructor(props) {
@@ -15,6 +16,7 @@ export class Shorten extends Component {
       newUrl: "",
       hashMsg: "",
       output: "",
+      isLoading:false
     };
   }
 
@@ -24,11 +26,7 @@ export class Shorten extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log(
-      "this.state.longUrl,this.state.hash",
-      this.state.longUrl,
-      this.state.hash
-    );
+    this.setState({isLoading:true});
     axios
       .post(
         "/shorten",
@@ -36,7 +34,7 @@ export class Shorten extends Component {
         { headers: { "auth-shorten-token": getToken() } }
       )
       .then((resp) => {
-        console.log("resp", resp);
+        this.setState({isLoading:false})
         if (resp.data.error) {
           this.setState({ error: resp.data.error });
         } else {
@@ -126,10 +124,16 @@ export class Shorten extends Component {
           >
             Short It
           </button>
-
-          <div></div>
         </form>
-        <p className={this.state.output ? "" : "d-none"}>
+        <div className={this.state.isLoading?"p-3":"d-none"}>
+      <Loader
+         type="Oval"
+         color="#808080"
+         height={30}
+         width={30}
+         timeout={500000000}
+      /></div>
+        <p className={this.state.output ? "p-2" : "d-none"}>
           OUTPUT :<a href={this.state.output}>{this.state.output}</a>
         </p>
       </div>

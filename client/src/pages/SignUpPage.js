@@ -4,6 +4,7 @@ import { Context } from "../context";
 import { withRouter, Link } from "react-router-dom";
 import { setUserSession } from "../utils/Common";
 import * as ROUTES from "../constants/routes";
+import Loader from 'react-loader-spinner'
 
 
 export class SignUpPage extends Component {
@@ -17,6 +18,7 @@ export class SignUpPage extends Component {
       password: "",
       confirm: "",
       error: "",
+      isLoading:false
     };
   }
   
@@ -24,6 +26,7 @@ export class SignUpPage extends Component {
 
   handleSubmit = (e) => {
     const { settingState } = this.context;
+    this.setState({isLoading:true})
     e.preventDefault();
     axios
       .post("/signup", {
@@ -33,8 +36,9 @@ export class SignUpPage extends Component {
       })
       .then((resp) => {
         if (resp.data.error) {
-          this.setState({ error: resp.data.error });
+          this.setState({ error: resp.data.error,isLoading:false });
         } else {
+          this.setState({isLoading:false})
           setUserSession(resp.data.token, resp.data.user);
           settingState(true, resp.data.user.name, resp.data.user._id);
           this.props.history.push("/");
@@ -54,7 +58,17 @@ export class SignUpPage extends Component {
 
   render() {
     return (
-      <div className="App-header text-center">
+      <>
+      <div className={this.state.isLoading?"App-header":"d-none"}>
+      <Loader
+         type="Oval"
+         color="#808080"
+         height={50}
+         width={50}
+         timeout={5000}
+      />
+      </div>
+      <div className={this.state.isLoading?"d-none":"App-header text-center"}>
         <h1 className="mb-3">Sign Up</h1>
         <div className="my-2">
           <small className="text-danger text-center">{this.state.error}</small>
@@ -121,6 +135,7 @@ export class SignUpPage extends Component {
           </div>
         </form>
       </div>
+      </>
     );
   }
 }

@@ -4,6 +4,8 @@ import { setUserSession } from "../utils/Common";
 import Axios from "axios";
 import { Link } from "react-router-dom";
 import * as ROUTES from "../constants/routes";
+import Loader from 'react-loader-spinner'
+
 
 export class SignInPage extends Component {
   static contextType = Context;
@@ -14,12 +16,14 @@ export class SignInPage extends Component {
       email: "",
       password: "",
       error: "",
+      isLoading:false
     };
   }
 
   handleChange = (e) => this.setState({ [e.target.name]: e.target.value });
 
   handleSubmit = (e) => {
+    this.setState({isLoading:true})
     e.preventDefault();
     const { settingState } = this.context;
     Axios.post("/login", {
@@ -27,8 +31,9 @@ export class SignInPage extends Component {
       password: this.state.password,
     }).then((resp) => {
       if (resp.data.error) {
-        this.setState({ error: resp.data.error, password: "" });
+        this.setState({ error: resp.data.error, password: "",isLoading:false });
       } else {
+        this.setState({isLoading:false})
         setUserSession(resp.data.token, resp.data.user);
         settingState(true, resp.data.user.name, resp.data.user._id);
         this.props.history.push("/");
@@ -80,7 +85,15 @@ export class SignInPage extends Component {
           >
             Sign In
           </button>
-
+          <div className={this.state.isLoading?"p-3":"d-none"}>
+      <Loader
+         type="Oval"
+         color="#808080"
+         height={30}
+         width={30}
+         timeout={500000000}
+      />
+      </div>
           <div className="my-1">
             <small className="text-left">
               New here? <Link to={ROUTES.SIGN_UP}>Sign Up</Link>

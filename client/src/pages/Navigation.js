@@ -9,7 +9,7 @@ export class Navigation extends Component {
   render() {
     const { logged, username } = this.context;
     return (
-      <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+      <nav className="navbar navbar-expand-lg navbar-dark bg-dark ">
         <NavLink className="navbar-brand" to="/">
           <b>UrlShortner</b>
         </NavLink>
@@ -43,23 +43,23 @@ const AuthNavbar = (props) => {
   const { settingState } = useContext(Context);
   return (
     <ul className="navbar-nav m-auto">
-      <li className="nav-item">
+      <li className="nav-item" data-toggle="collapse" data-target=".navbar-collapse">
         <NavLink className="nav-link" to={ROUTES.HOME_PAGE}>
           Home <span className="sr-only">(current)</span>
         </NavLink>
       </li>
-      <li className="nav-item">
+      <li className="nav-item" data-toggle="collapse" data-target=".navbar-collapse">
         <NavLink className="nav-link" to={ROUTES.SHORTEN}>
           Shorten <span className="sr-only"></span>
         </NavLink>
       </li>
-      <li className="nav-item">
+      <li className="nav-item" data-toggle="collapse" data-target=".navbar-collapse">
         <NavLink className="nav-link" to={ROUTES.ALL_SHORTEN}>
           List All
         </NavLink>
       </li>
 
-      <li className="nav-item">
+      <li className="nav-item" data-toggle="collapse" data-target=".navbar-collapse">
         <NavLink
           onClick={() => {
             removeUserSession();
@@ -80,18 +80,18 @@ const AuthNavbarBase = withRouter(AuthNavbar);
 
 const NonAuthNavbar = () => (
   <ul className="navbar-nav m-auto">
-    <li className="nav-item active">
+    <li className="nav-item active" data-toggle="collapse" data-target=".navbar-collapse">
       <NavLink className="nav-link" to={ROUTES.HOME_PAGE}>
         Home <span className="sr-only">(current)</span>
       </NavLink>
     </li>
-    <li className="nav-item">
+    <li className="nav-item" data-toggle="collapse" data-target=".navbar-collapse">
       <NavLink className="nav-link" to={ROUTES.SIGN_IN}>
         Sign In
       </NavLink>
     </li>
 
-    <li className="nav-item">
+    <li className="nav-item" data-toggle="collapse" data-target=".navbar-collapse">
       <NavLink className="nav-link" to={ROUTES.SIGN_UP}>
         Sign Up
       </NavLink>

@@ -46,7 +46,6 @@ router.post("/", Verify, (req, res) => {
           });
           Url.save()
             .then((resp) => {
-              console.log("resp", resp);
               res.json({error:null,doc:resp});
             })
             .catch((err) => console.log("err", err));

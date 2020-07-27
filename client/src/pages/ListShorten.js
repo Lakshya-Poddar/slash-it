@@ -3,6 +3,8 @@ import { getToken } from "../utils/Common";
 import { Link } from "react-router-dom";
 import * as ROUTES from "../constants/routes";
 import axios from "axios";
+import Loader from 'react-loader-spinner'
+
 
 export class ListShorten extends Component {
   constructor(props) {
@@ -10,16 +12,18 @@ export class ListShorten extends Component {
 
     this.state = {
       items: [],
+      isLoading:false,
     };
   }
 
   componentDidMount() {
+    this.setState({isLoading:true})
     axios
       .get("/shorten/list", {
         headers: { "auth-shorten-token": getToken() },
       })
       .then((resp) => {
-        this.setState({ items: resp.data });
+        this.setState({ items: resp.data,isLoading:false });
       })
       .catch((err) => console.log("err", err));
   }
@@ -50,6 +54,16 @@ export class ListShorten extends Component {
         </div>
       );
     return (
+      <>
+      <div className={this.state.isLoading?"App-header":"d-none"}>
+      <Loader
+         type="Oval"
+         color="gray"
+         height={50}
+         width={50}
+         timeout={500000000}
+      />
+      </div>
       <div className="container p-2">
         <div className="list-group">
           {
@@ -61,6 +75,7 @@ export class ListShorten extends Component {
           }
         </div>
       </div>
+      </>
     );
   }
 }
