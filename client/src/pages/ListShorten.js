@@ -3,8 +3,7 @@ import { getToken } from "../utils/Common";
 import { Link } from "react-router-dom";
 import * as ROUTES from "../constants/routes";
 import axios from "axios";
-import Loader from 'react-loader-spinner'
-
+import Loader from "react-loader-spinner";
 
 export class ListShorten extends Component {
   constructor(props) {
@@ -12,18 +11,18 @@ export class ListShorten extends Component {
 
     this.state = {
       items: [],
-      isLoading:false,
+      isLoading: false,
     };
   }
 
   componentDidMount() {
-    this.setState({isLoading:true})
+    this.setState({ isLoading: true });
     axios
       .get("/shorten/list", {
         headers: { "auth-shorten-token": getToken() },
       })
       .then((resp) => {
-        this.setState({ items: resp.data,isLoading:false });
+        this.setState({ items: resp.data, isLoading: false });
       })
       .catch((err) => console.log("err", err));
   }
@@ -55,26 +54,29 @@ export class ListShorten extends Component {
       );
     return (
       <>
-      <div className={this.state.isLoading?"App-header":"d-none"}>
-      <Loader
-         type="Oval"
-         color="gray"
-         height={50}
-         width={50}
-         timeout={500000000}
-      />
-      </div>
-      <div className="container pt-3 pt-md-5 mt-5 pb-2">
-        <div className="list-group">
-          {
-            // this.state.items.forEach(item=><EachItem />)
-            this.state.items.reverse().map((item) => (
-              <EachItem key={item._id} hash={item.hashed} url={item.longUrl} />
-               
-            ))
-          }
+        <div className={this.state.isLoading ? "App-header" : "d-none"}>
+          <Loader
+            type="Oval"
+            color="gray"
+            height={50}
+            width={50}
+            timeout={500000000}
+          />
         </div>
-      </div>
+        <div className="container pt-3 pt-md-5 mt-5 pb-2">
+          <div className="list-group">
+            {
+              // this.state.items.forEach(item=><EachItem />)
+              this.state.items.reverse().map((item) => (
+                <EachItem
+                  key={item._id}
+                  hash={item.hashed}
+                  url={item.longUrl}
+                />
+              ))
+            }
+          </div>
+        </div>
       </>
     );
   }
@@ -83,12 +85,15 @@ export class ListShorten extends Component {
 const EachItem = ({ hash, url }) => (
   <div className="list-group-item list-group-item-action flex-column align-items-center active">
     <div className="d-flex w-75 justify-content-between">
-      <a href={`https://infinite-inlet-73320.herokuapp.com/${hash}`} target="_blank" rel="noopener noreferrer"  className="mb-1">{`https://infinite-inlet-73320.herokuapp.com/${hash}`}</a>
+      <a
+        href={`https://infinite-inlet-73320.herokuapp.com/${hash}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="mb-1"
+      >{`https://infinite-inlet-73320.herokuapp.com/${hash}`}</a>
       <small>3 days ago</small>
     </div>
-    <p className="mb-1">
-      {`URL : ${url}`}
-    </p>
+    <p className="mb-1">{`URL : ${url}`}</p>
     <small>{`HASH : ${hash}`}</small>
   </div>
 );

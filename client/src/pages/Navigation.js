@@ -1,5 +1,5 @@
 import React, { Component, useContext } from "react";
-import { NavLink, withRouter,Link } from "react-router-dom";
+import { NavLink, withRouter, Link } from "react-router-dom";
 import * as ROUTES from "../constants/routes";
 import { removeUserSession } from "../utils/Common";
 import { Context } from "../context";
@@ -65,23 +65,26 @@ const AuthNavbar = (props) => {
 
 const AuthNavbarBase = withRouter(AuthNavbar);
 
-
-
 const NonAuthNavbar = () => (
   <>
-  <Nav className="ml-auto">
-      <Nav.Link href={ROUTES.HOME_PAGE}><NavLink className="nav-link" to={ROUTES.HOME_PAGE}>
-        Home <span className="sr-only">(current)</span>
-      </NavLink></Nav.Link>
-      <Nav.Link href={ROUTES.SIGN_IN}><NavLink className="nav-link" to={ROUTES.SIGN_IN}>
-        Sign In
-      </NavLink></Nav.Link>
-      <Nav.Link href={ROUTES.SIGN_UP}><NavLink className="nav-link" to={ROUTES.SIGN_UP}>
-        Sign Up
-      </NavLink></Nav.Link>
-      
-    </Nav> 
-    </>
+    <Nav className="ml-auto">
+      <Nav.Link href={ROUTES.HOME_PAGE}>
+        <NavLink className="nav-link" to={ROUTES.HOME_PAGE}>
+          Home <span className="sr-only">(current)</span>
+        </NavLink>
+      </Nav.Link>
+      <Nav.Link href={ROUTES.SIGN_IN}>
+        <NavLink className="nav-link" to={ROUTES.SIGN_IN}>
+          Sign In
+        </NavLink>
+      </Nav.Link>
+      <Nav.Link href={ROUTES.SIGN_UP}>
+        <NavLink className="nav-link" to={ROUTES.SIGN_UP}>
+          Sign Up
+        </NavLink>
+      </Nav.Link>
+    </Nav>
+  </>
 );
 
 export default withRouter(Navigation);
