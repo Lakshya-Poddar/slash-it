@@ -1,5 +1,5 @@
 import React, { Component, useContext } from "react";
-import { NavLink, withRouter } from "react-router-dom";
+import { NavLink, withRouter,Link } from "react-router-dom";
 import * as ROUTES from "../constants/routes";
 import { removeUserSession } from "../utils/Common";
 import { Context } from "../context";
@@ -9,7 +9,7 @@ export class Navigation extends Component {
   render() {
     const { logged, username } = this.context;
     return (
-      <nav className="navbar navbar-expand-lg navbar-dark bg-dark ">
+      <nav className="navbar navbar-expand-lg navbar-dark bg-dark position-sticky">
         <NavLink className="navbar-brand" to="/">
           <b>UrlShortner</b>
         </NavLink>
@@ -43,11 +43,11 @@ const AuthNavbar = (props) => {
   const { settingState } = useContext(Context);
   return (
     <ul className="navbar-nav m-auto">
-      <li className="nav-item" data-toggle="collapse" data-target=".navbar-collapse">
+      <a as={Link} className="nav-item" data-toggle="collapse" data-target=".navbar-collapse">
         <NavLink className="nav-link" to={ROUTES.HOME_PAGE}>
           Home <span className="sr-only">(current)</span>
         </NavLink>
-      </li>
+      </a>
       <li className="nav-item" data-toggle="collapse" data-target=".navbar-collapse">
         <NavLink className="nav-link" to={ROUTES.SHORTEN}>
           Shorten <span className="sr-only"></span>

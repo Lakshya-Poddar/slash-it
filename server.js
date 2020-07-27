@@ -42,6 +42,15 @@ app.get("/:hash", (req, res) => {
       console.log(doc);
       return res.redirect(doc.longUrl);
     }
+    else
+    {
+      if (process.env.NODE_ENV === "production") {
+        app.use(express.static("client/build"));
+        app.get("*", (req, res) => {
+          res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+        });
+      }
+    }
   });
 });
 
