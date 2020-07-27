@@ -64,7 +64,7 @@ export class ListShorten extends Component {
          timeout={500000000}
       />
       </div>
-      <div className="container p-2">
+      <div className="container pt-3 pt-md-5 mt-5 pb-2">
         <div className="list-group">
           {
             // this.state.items.forEach(item=><EachItem />)
@@ -83,7 +83,7 @@ export class ListShorten extends Component {
 const EachItem = ({ hash, url }) => (
   <div className="list-group-item list-group-item-action flex-column align-items-center active">
     <div className="d-flex w-75 justify-content-between">
-      <a href={`https://infinite-inlet-73320.herokuapp.com/${hash}`} target="_blank" className="mb-1">{`https://infinite-inlet-73320.herokuapp.com/${hash}`}</a>
+      <a href={`https://infinite-inlet-73320.herokuapp.com/${hash}`} target="_blank" rel="noopener noreferrer"  className="mb-1">{`https://infinite-inlet-73320.herokuapp.com/${hash}`}</a>
       <small>3 days ago</small>
     </div>
     <p className="mb-1">
