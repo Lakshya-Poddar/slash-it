@@ -18,10 +18,10 @@ function App() {
       <Navigation />
       <Switch>
         <Route path={ROUTES.HOME_PAGE} exact component={HomePage} />
-        <Route path={ROUTES.SIGN_IN} component={SignInPage} />
-        <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
-        <Route path={ROUTES.ALL_SHORTEN} component={ListShorten} />
-        <Route path={ROUTES.SHORTEN} component={Shorten} />
+        <Route path={ROUTES.SIGN_IN} exact component={SignInPage} />
+        <Route path={ROUTES.SIGN_UP} exact component={SignUpPage} />
+        <Route path={ROUTES.ALL_SHORTEN} exact component={ListShorten} />
+        <Route path={ROUTES.SHORTEN} exact component={Shorten} />
         <Route component={ErrorPage} />
       </Switch>
     </div>
