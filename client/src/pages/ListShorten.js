@@ -68,9 +68,6 @@ export class ListShorten extends Component {
           {this.state.items.length===0?<p className="text-center">NO ITEMS FOUND</p>:this.state.items.reverse().map((item) => (
               <EachItem key={item._id} hash={item.hashed} url={item.longUrl} />
             ))}
-            {this.state.items.reverse().map((item) => (
-              <EachItem key={item._id} hash={item.hashed} url={item.longUrl} />
-            ))}
           </div>
         </div>
       </>
