@@ -39,7 +39,7 @@ export class Shorten extends Component {
           this.setState({ error: resp.data.error });
         } else {
           this.setState({
-            output: `https://infinite-inlet-73320.herokuapp.com/${resp.data.doc.hashed}/`,
+            output: `https://siui.herokuapp.com/${resp.data.doc.hashed}/`,
             hash: "",
             error: "",
             newUrl: "",

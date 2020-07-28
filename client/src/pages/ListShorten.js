@@ -63,18 +63,14 @@ export class ListShorten extends Component {
             timeout={500000000}
           />
         </div>
-        <div className="container pt-3 pt-md-5 mt-5 pb-2">
-          <div className="list-group">
-            {
-              // this.state.items.forEach(item=><EachItem />)
-              this.state.items.reverse().map((item) => (
-                <EachItem
-                  key={item._id}
-                  hash={item.hashed}
-                  url={item.longUrl}
-                />
-              ))
-            }
+        <div className="container  pt-3 pt-md-5 mt-5 pb-2">
+          <div className="list-group   w-100 mx-auto">
+          {this.state.items.length===0?<p className="text-center">NO ITEMS FOUND</p>:this.state.items.reverse().map((item) => (
+              <EachItem key={item._id} hash={item.hashed} url={item.longUrl} />
+            ))}
+            {this.state.items.reverse().map((item) => (
+              <EachItem key={item._id} hash={item.hashed} url={item.longUrl} />
+            ))}
           </div>
         </div>
       </>
@@ -83,18 +79,23 @@ export class ListShorten extends Component {
 }
 
 const EachItem = ({ hash, url }) => (
-  <div className="list-group-item list-group-item-action flex-column align-items-center active">
-    <div className="d-flex w-75 justify-content-between">
-      <a
-        href={`https://infinite-inlet-73320.herokuapp.com/${hash}`}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="mb-1"
-      >{`https://infinite-inlet-73320.herokuapp.com/${hash}`}</a>
-      <small>3 days ago</small>
+  <div className="list-group-item list-group-item-action flex-column align-items-center active bg-light ">
+    <div className="row">
+      <div className="col-12 col-md-5 col-lg-5">
+        <a
+          href={`https://siui.herokuapp.com/${hash}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mb-1 list-style"
+        >{`https://siui.herokuapp.com/${hash}`}</a>
+      </div>
+      <div className="col-12 col-md-5 col-lg-5 ">
+        <p className="mb-1 text-muted">{`URL : ${url}`}</p>
+      </div>
+      <div className="col-12 col-md-2 col-lg-2 text-secondary">
+        <p>{`HASH : ${hash}`}</p>
+      </div>
     </div>
-    <p className="mb-1">{`URL : ${url}`}</p>
-    <small>{`HASH : ${hash}`}</small>
   </div>
 );
 
