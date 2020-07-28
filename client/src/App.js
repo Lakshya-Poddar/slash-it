@@ -6,8 +6,8 @@ import ListShorten from "./pages/ListShorten";
 import Shorten from "./pages/Shorten";
 import SignInPage from "./pages/SignInPage";
 import SignUpPage from "./pages/SignUpPage";
-import ErrorPage from "./pages/ErrorPage";
-import { Route, Switch } from "react-router-dom";
+import PageNotFound from './pages/PageNotFound'
+import { Route, Switch,Redirect } from "react-router-dom";
 import Navigation from "./pages/Navigation";
 import * as ROUTES from "./constants/routes";
 
@@ -22,7 +22,8 @@ function App() {
         <Route path={ROUTES.SIGN_UP} exact component={SignUpPage} />
         <Route path={ROUTES.ALL_SHORTEN} exact component={ListShorten} />
         <Route path={ROUTES.SHORTEN} exact component={Shorten} />
-        <Route component={ErrorPage} />
+        <Route path="/404" component={HomePage } />
+        <Redirect to="/404" />
       </Switch>
     </div>
   );

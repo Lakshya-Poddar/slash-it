@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 
-export class ErrorPage extends Component {
+class PageNotFound extends Component {
     render() {
         return (
             <div>
-                <h1>Error Page</h1>
+                <h1>Page  NOT found</h1>
             </div>
         )
     }
 }
 
-export default ErrorPage
+export default PageNotFound
