@@ -10,7 +10,7 @@ export class Navigation extends Component {
   render() {
     const { logged } = this.context;
     return (
-      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" >
+      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" fixed="top" >
         <Navbar.Brand>
           <b>UrlShortner</b>
         </Navbar.Brand>
