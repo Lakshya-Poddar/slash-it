@@ -22,8 +22,8 @@ function App() {
         <Route path={ROUTES.SIGN_UP} exact component={SignUpPage} />
         <Route path={ROUTES.ALL_SHORTEN} exact component={ListShorten} />
         <Route path={ROUTES.SHORTEN} exact component={Shorten} />
-        <Route path="/404" component={HomePage } />
-        <Redirect to="/404" />
+        <Route path="/" component={HomePage } />
+        <Redirect to="/" />
       </Switch>
     </div>
   );
