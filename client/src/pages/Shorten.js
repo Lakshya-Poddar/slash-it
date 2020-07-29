@@ -3,7 +3,7 @@ import axios from "axios";
 import { getToken } from "../utils/Common";
 import { Link } from "react-router-dom";
 import * as ROUTES from "../constants/routes";
-import Loader from 'react-loader-spinner'
+import Loader from "react-loader-spinner";
 
 export class Shorten extends Component {
   constructor(props) {
@@ -16,7 +16,7 @@ export class Shorten extends Component {
       newUrl: "",
       hashMsg: "",
       output: "",
-      isLoading:false
+      isLoading: false,
     };
   }
 
@@ -26,7 +26,7 @@ export class Shorten extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.setState({isLoading:true});
+    this.setState({ isLoading: true });
     axios
       .post(
         "/shorten",
@@ -34,7 +34,7 @@ export class Shorten extends Component {
         { headers: { "auth-shorten-token": getToken() } }
       )
       .then((resp) => {
-        this.setState({isLoading:false})
+        this.setState({ isLoading: false });
         if (resp.data.error) {
           this.setState({ error: resp.data.error });
         } else {
@@ -69,12 +69,12 @@ export class Shorten extends Component {
           </h1>
           <span>
             <Link to={ROUTES.SIGN_IN}>
-              <button className="text-center m-2 btn btn-outline-danger mt-3">
+              <button className="text-center m-2 btn btn-outline-css mt-3">
                 Sign In
               </button>
             </Link>
             <Link to={ROUTES.SIGN_UP}>
-              <button className="text-center m-2 btn btn-outline-danger mt-3">
+              <button className="text-center m-2 btn btn-outline-css mt-3">
                 Sign Up
               </button>
             </Link>
@@ -82,13 +82,13 @@ export class Shorten extends Component {
         </div>
       );
     return (
-      <div className="App-header text-center">
+      <div className="App-header text-center p-5">
         <div className="my-2">
           <small className="text-danger text-center">{this.state.error}</small>
         </div>
         <form onSubmit={this.handleSubmit}>
           <div className="form-group form-inline">
-            <label>Long Url :</label>
+            <label className="mx-2">Long Url :</label>
             <input
               type="url"
               required
@@ -100,7 +100,9 @@ export class Shorten extends Component {
             />
           </div>
           <div className="form-group form-inline">
-            <label>Preferred Hash<span className="text-danger"> *</span> :</label>
+            <label className="mx-2">
+              Preferred Hash<span className="text-danger"> *</span> :
+            </label>
             <input
               type="text"
               name="hash"
@@ -120,19 +122,20 @@ export class Shorten extends Component {
           <br />
           <button
             type="submit"
-            className="text-center btn btn-outline-danger mt-3"
+            className="text-center btn btn-outline-css mt-3"
           >
             Short It
           </button>
         </form>
-        <div className={this.state.isLoading?"p-3":"d-none"}>
-      <Loader
-         type="Oval"
-         color="#808080"
-         height={30}
-         width={30}
-         timeout={500000000}
-      /></div>
+        <div className={this.state.isLoading ? "p-3" : "d-none"}>
+          <Loader
+            type="Oval"
+            color="#808080"
+            height={30}
+            width={30}
+            timeout={500000000}
+          />
+        </div>
         <p className={this.state.output ? "p-2" : "d-none"}>
           OUTPUT :<a href={this.state.output}>{this.state.output}</a>
         </p>

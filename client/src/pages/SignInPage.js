@@ -52,14 +52,14 @@ export class SignInPage extends Component {
 
   render() {
     return (
-      <div className="App-header text-center">
-        <h1 className="mb-3">Sign In</h1>
+      <div className="App-header text-center p-5">
+        <h1 className="mb-3 signintext-css">Sign In</h1>
         <div className="my-2">
           <small className="text-danger text-center">{this.state.error}</small>
         </div>
         <form onSubmit={this.handleSubmit}>
           <div className="form-group form-inline">
-            <label>E-mail :</label>
+            <label className="mx-2 label-css">E-mail :</label>
             <input
               type="email"
               name="email"
@@ -71,7 +71,7 @@ export class SignInPage extends Component {
             />
           </div>
           <div className="form-group form-inline">
-            <label>Password :</label>
+            <label className="mx-2 label-css">Password :</label>
             <input
               type="password"
               name="password"
@@ -85,23 +85,23 @@ export class SignInPage extends Component {
 
           <button
             type="submit"
-            className="text-center btn btn-outline-danger btn-block mt-3"
+            className="text-center btn btn-outline-css px-4 my-2"
           >
             Sign In
           </button>
           <div className={this.state.isLoading ? "p-3" : "d-none"}>
             <Loader
               type="Oval"
-              color="#808080"
+              color="#45A29E"
               height={30}
               width={30}
               timeout={500000000}
             />
           </div>
           <div className="my-1">
-            <small className="text-left">
-              New here? <Link to={ROUTES.SIGN_UP}>Sign Up</Link>
-            </small>
+            <p className="text-center">
+              New here? <Link className="link-css" to={ROUTES.SIGN_UP}>Sign Up</Link>
+            </p>
           </div>
 
           <div></div>

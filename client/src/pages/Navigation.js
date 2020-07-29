@@ -10,11 +10,20 @@ export class Navigation extends Component {
   render() {
     const { logged } = this.context;
     return (
-      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" fixed="top" >
+      <Navbar
+        className="navbar-css"
+        collapseOnSelect
+        expand="lg"
+        variant="dark"
+        fixed="top"
+      >
         <Navbar.Brand>
           <b>UrlShortner</b>
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Toggle
+          className="toogle-css"
+          aria-controls="responsive-navbar-nav"
+        />
         <Navbar.Collapse id="responsive-navbar-nav">
           {logged ? <AuthNavbarBase logout={this.logout} /> : <NonAuthNavbar />}
         </Navbar.Collapse>

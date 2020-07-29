@@ -14,18 +14,24 @@ app.use(cors());
 //bodyparser
 app.use(bodyparser.urlencoded({ extended: false }));
 app.use(bodyparser.json());
-app.use(express.static('build'));
-app.use((req, res, next) => {
-  if (req.header('x-forwarded-proto') !== 'https') {
-    res.redirect(`https://${req.header('host')}${req.url}`)
-  } else {
-    next();
-  }
-});
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("build"));
+  app.use((req, res, next) => {
+    if (req.header("x-forwarded-proto") !== "https") {
+      res.redirect(`https://${req.header("host")}${req.url}`);
+    } else {
+      next();
+    }
+  });
+}
 
 //mongodb connection
 mongoose
-  .connect(process.env.MONGO_URI, { useNewUrlParser: true })
+  .connect(process.env.MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
   .then(() => console.log("CONNECTED TO MONGODB"))
   .catch((err) => console.log(err));
 //serve static assets if in production
@@ -46,7 +52,6 @@ if (process.env.NODE_ENV === "production") {
   app.get("/", (req, res) => {
     res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
   });
-
 }
 
 //routing every one accessing the server

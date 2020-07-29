@@ -30,14 +30,17 @@ router.post("/", Verify, (req, res) => {
   URL.findOne({ hashed: req.body.hash }, (err, doc) => {
     //checking if hash is available
     if (doc) {
-      hash= uniqid();
+      hash = uniqid();
     }
     URL.findOne(
       { longUrl: req.body.longUrl, userid: req.user._id }, //checking longurl same or not for a user
       (err, doc) => {
         if (doc) {
           console.log("doc", doc);
-          return res.json({error:"This url has already been shortened by you",doc:null});
+          return res.json({
+            error: "This url has already been shortened by you",
+            doc: null,
+          });
         } else {
           const Url = new URL({
             hashed: hash,
@@ -46,7 +49,7 @@ router.post("/", Verify, (req, res) => {
           });
           Url.save()
             .then((resp) => {
-              res.json({error:null,doc:resp});
+              res.json({ error: null, doc: resp });
             })
             .catch((err) => console.log("err", err));
         }
