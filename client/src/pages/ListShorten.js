@@ -90,15 +90,15 @@ export class ListShorten extends Component {
 const EachItem = ({ hash, url }) => (
   <div className="list-group-item my-1 mx-2 list-group-item-action flex-column align-items-center active ">
     <div className="row">
-      <div className="col-12 col-md-12 col-lg-5">
+      <div className="col-12 col-md-12 col-lg-4 ">
         <a
           href={`https://siui.herokuapp.com/${hash}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="mb-1 list-style"
+          className="mb-1 list-style "
         >{`https://siui.herokuapp.com/${hash}`}</a>
       </div>
-      <div className="col-12 col-md-12 col-lg-5 ">
+      <div className="col-12 col-md-12 col-lg-6 ">
         <p className="mb-1 text-light">
           {`URL : `}
           <span className="list-style-dark">{`${url}`}</span>

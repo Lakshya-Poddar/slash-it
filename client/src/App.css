@@ -8,7 +8,9 @@ p {
   padding: 0 !important;
   margin: 0 !important;
 }
-
+p{
+  overflow-wrap: break-word !important;
+}
 /* Centering the element at center of page */
 .App-header {
   background-color: #d8d8d8;
