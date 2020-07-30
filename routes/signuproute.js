@@ -25,7 +25,7 @@ router.post("/", (req, res) => {
     if (doc) {
       return res.json({
         user: null,
-        error: "EMAIL ALREADY EXISTS",
+        error: "Email already exists!",
         token: null,
       });
     }
@@ -55,7 +55,7 @@ router.post("/", (req, res) => {
         console.log("err", err); //console out here
         res.status(200).json({
           user: null,
-          error: "THERE WAS THE ERROR WITH THE SERVER, PLEASE TRY AGAIN LATER",
+          error: "There was a error with the server, please try again later",
           token: null,
         });
       });

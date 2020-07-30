@@ -29,7 +29,7 @@ router.post("/", async (req, res) => {
   if (!user)
     return res.status(200).json({
       user: null,
-      error: "*Incorrect Credentials",
+      error: "*Email not registered",
       token: null,
     });
   //checking password

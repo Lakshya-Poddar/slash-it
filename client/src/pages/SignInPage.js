@@ -5,6 +5,7 @@ import Axios from "axios";
 import { Link } from "react-router-dom";
 import * as ROUTES from "../constants/routes";
 import Loader from "react-loader-spinner";
+import validator from "validator"
 
 export class SignInPage extends Component {
   static contextType = Context;
@@ -53,7 +54,7 @@ export class SignInPage extends Component {
   render() {
     return (
       <div className="App-header text-center p-5">
-        <h1 className="mb-3 signintext-css">Sign In</h1>
+        <h1 className="mb-3 signintext-css pt-5">Sign In</h1>
         <div className="my-2">
           <small className="text-danger text-center">{this.state.error}</small>
         </div>
@@ -69,6 +70,9 @@ export class SignInPage extends Component {
               value={this.state.email}
               placeholder="Enter your email"
             />
+            {/* {
+              validator.isEmail(this.state.email)?"":"Enter a valid Email!"
+            } */}
           </div>
           <div className="form-group form-inline">
             <label className="mx-2 label-css">Password :</label>
@@ -82,7 +86,7 @@ export class SignInPage extends Component {
               placeholder="Enter the password"
             />
           </div>
-
+            
           <button
             type="submit"
             className="text-center btn btn-outline-css px-4 my-2"

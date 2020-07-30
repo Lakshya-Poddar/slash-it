@@ -18,7 +18,7 @@ export class Navigation extends Component {
         fixed="top"
       >
         <Navbar.Brand>
-          <b>UrlShortner</b>
+          <b>SlashIt</b>
         </Navbar.Brand>
         <Navbar.Toggle
           className="toogle-css"

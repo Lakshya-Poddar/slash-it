@@ -48,25 +48,24 @@ p{
 
 /* HomePage */
 .homepage-css span {
-  color: #66fcf1;
+  color: #13c7bb;
   letter-spacing: 2px;
-  text-shadow: -1px -1px 0 #1f2833, 1px -1px 0 #1f2833, -1px 1px 0 #1f2833,
-    1px 1px 0 #1f2833;
+  /* text-shadow: -1px -1px 0 #1f2833, 1px -1px 0 #1f2833, -1px 1px 0 #1f2833,
+    1px 1px 0 #1f2833; */
 }
 .homepage-css {
   color: #45a29e;
-  text-shadow: -1px -1px 0 #1f2833, 1px -1px 0 #1f2833, -1px 1px 0 #1f2833,
-    1px 1px 0 #1f2833;
+  /* text-shadow: -1px -1px 0 #1f2833, 1px -1px 0 #1f2833, -1px 1px 0 #1f2833,
+    1px 1px 0 #1f2833; */
   letter-spacing: 2px;
 }
 
 /* SinginPage */
 .signintext-css,
 .signuptext-css {
-  color: #66fcf1;
+  color: #45a29e;
   letter-spacing: 3px;
-  text-shadow: -2px -2px 0 #1f2833, 1px -1px 0 #1f2833, -1px 1px 0 #1f2833,
-    1px 1px 0 #1f2833;
+  /* text-shadow: -1px -1px 0 #1f2833, 1px -1px 0 #1f2833, -1px 1px 0 #1f2833, 1px 1px 0 #1f2833; */
 }
 /* Form */
 .label-css {
@@ -84,6 +83,14 @@ p{
 .btn-outline-css:hover {
   background-color: #66fcf1 !important;
   border-color: #0b0c10 !important;
+}
+.btn-outline-css-light:hover{
+  background-color: #66fcf1 !important;
+  color: #1b3d3c !important;
+}
+.btn-outline-css-dark:hover{
+  background-color: #45a29e !important;
+  color: #ffffff !important;
 }
 
 /* Link */

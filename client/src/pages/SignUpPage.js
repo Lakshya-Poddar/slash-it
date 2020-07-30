@@ -5,6 +5,7 @@ import { withRouter, Link } from "react-router-dom";
 import { setUserSession } from "../utils/Common";
 import * as ROUTES from "../constants/routes";
 import Loader from "react-loader-spinner";
+import validator from "validator";
 
 export class SignUpPage extends Component {
   static contextType = Context;
@@ -18,15 +19,26 @@ export class SignUpPage extends Component {
       confirm: "",
       error: "",
       isLoading: false,
+      passwordError: "",
     };
   }
 
   handleChange = (e) => this.setState({ [e.target.name]: e.target.value });
 
   handleSubmit = (e) => {
-    const { settingState } = this.context;
-    this.setState({ isLoading: true });
     e.preventDefault();
+    const { settingState } = this.context;
+    this.setState({ passwordError: "" });
+
+    if (!validator.equals(this.state.password, this.state.confirm)) {
+      return this.setState({
+        passwordError: "Password didn't match!",
+        password: "",
+        confirm: "",
+      });
+    }
+
+    this.setState({ isLoading: true });
     axios
       .post("/signup", {
         name: this.state.name,
@@ -69,13 +81,17 @@ export class SignUpPage extends Component {
         </div>
         <div
           className={
-            this.state.isLoading ? "d-none" : "App-header text-center p-5"
+            this.state.isLoading ? "d-none" : "App-header text-center  p-5"
           }
         >
-          <h1 className="mb-3 signuptext-css">Sign Up</h1>
+          <h1 className="mb-3 signuptext-css pt-5">Sign Up</h1>
+          <small className="text-muted ">*Compulsary fields</small>
           <div className="my-2">
             <small className="text-danger text-center">
               {this.state.error}
+            </small>
+            <small className="text-danger text-center">
+              {this.state.passwordError ? "Password didn't match!" : ""}
             </small>
           </div>
           <form onSubmit={this.handleSubmit}>
@@ -132,6 +148,7 @@ export class SignUpPage extends Component {
                 placeholder="Re-Enter password"
               />
             </div>
+
             <button
               type="submit"
               className="text-center btn btn-outline-css px-3 my-2"
@@ -146,6 +163,7 @@ export class SignUpPage extends Component {
                 </Link>
               </p>
             </div>
+            
           </form>
         </div>
       </>
