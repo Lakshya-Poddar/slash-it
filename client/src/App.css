@@ -42,9 +42,7 @@ p{
 .nav-link:hover {
   color: #45a29e !important;
 }
-.active > .nav-link {
-  color: #c5c6c7 !important;
-}
+
 
 /* HomePage */
 .homepage-css span {

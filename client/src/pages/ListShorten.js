@@ -63,8 +63,8 @@ export class ListShorten extends Component {
             timeout={500000000}
           />
         </div>
-        <div className={!this.state.isLoading?"listbackground-css  pt-3 pt-md-5 mt-5 pb-2":"d-none"}>
-          <div className="container">
+        <div className={!this.state.isLoading?"listbackground-css  pt-3 pt-md-5  pb-2":"d-none"}>
+          <div className="container mt-5">
             <div className="list-group p-3 text-light  w-100  mt-5 ">
               {this.state.items.length === 0 ? (
                 <p className="text-center  text-light">NO ITEMS FOUND</p>
