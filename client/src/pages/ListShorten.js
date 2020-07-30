@@ -63,7 +63,7 @@ export class ListShorten extends Component {
             timeout={500000000}
           />
         </div>
-        <div className="listbackground-css  pt-3 pt-md-5 mt-5 pb-2">
+        <div className={!this.state.isLoading?"listbackground-css  pt-3 pt-md-5 mt-5 pb-2":"d-none"}>
           <div className="container">
             <div className="list-group p-3 text-light  w-100  ">
               {this.state.items.length === 0 ? (
@@ -96,7 +96,7 @@ const EachItem = ({ hash, url }) => (
           target="_blank"
           rel="noopener noreferrer"
           className="mb-1 list-style "
-        >{`https://siui.herokuapp.com/${hash}`}</a>
+        ><p>{`https://siui.herokuapp.com/${hash}`}</p></a>
       </div>
       <div className="col-12 col-md-12 col-lg-6 ">
         <p className="mb-1 text-light">

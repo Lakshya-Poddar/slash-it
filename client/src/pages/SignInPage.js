@@ -41,7 +41,7 @@ export class SignInPage extends Component {
           this.setState({ isLoading: false });
           setUserSession(resp.data.token, resp.data.user);
           settingState(true, resp.data.user.name, resp.data.user._id);
-          this.props.history.push("/");
+          this.props.history.push("/shortenurl");
         }
       })
       .catch((err) => this.setState({ error: err }));

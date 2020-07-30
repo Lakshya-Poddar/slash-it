@@ -18,7 +18,10 @@ export class Navigation extends Component {
         fixed="top"
       >
         <Navbar.Brand>
-          <b>Slash It</b>
+        <Link className="nav-link" to={ROUTES.HOME_PAGE}>
+        <b>Slash It</b>
+          </Link>
+          
         </Navbar.Brand>
         <Navbar.Toggle
           className="toogle-css"
@@ -37,11 +40,11 @@ const AuthNavbar = (props) => {
   return (
     <>
       <Nav className="m-auto">
-        <Nav.Link href={ROUTES.HOME_PAGE}>
+        {/* <Nav.Link href={ROUTES.HOME_PAGE}>
           <Link className="nav-link active" to={ROUTES.HOME_PAGE}>
             Home <span className="sr-only">(current)</span>
           </Link>
-        </Nav.Link>
+        </Nav.Link> */}
         <Nav.Link href={ROUTES.SHORTEN}>
           <Link className="nav-link" to={ROUTES.SHORTEN}>
             Shorten <span className="sr-only"></span>
