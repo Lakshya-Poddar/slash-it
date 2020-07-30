@@ -39,7 +39,7 @@ export class Shorten extends Component {
           this.setState({ error: resp.data.error });
         } else {
           this.setState({
-            output: `https://siui.herokuapp.com/${resp.data.doc.hashed}/`,
+            output: `https://slashit.herokuapp.com/${resp.data.doc.hashed}/`,
             hash: "",
             error: "",
             newUrl: "",
@@ -130,7 +130,7 @@ export class Shorten extends Component {
         <div className={this.state.isLoading ? "p-3" : "d-none"}>
           <Loader
             type="Oval"
-            color="#808080"
+            color="#45a29e"
             height={30}
             width={30}
             timeout={500000000}
