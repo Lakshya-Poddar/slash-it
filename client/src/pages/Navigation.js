@@ -53,7 +53,7 @@ const AuthNavbar = (props) => {
       </Nav>
       <Nav>
         <Nav.Link href="#">
-          <NavLink
+          <Link
             onClick={() => {
               removeUserSession();
               settingState(false, "", "");
@@ -63,7 +63,7 @@ const AuthNavbar = (props) => {
             className="nav-link"
           >
             SignOut
-          </NavLink>{" "}
+          </Link>{" "}
         </Nav.Link>
       </Nav>
     </>
@@ -76,19 +76,19 @@ const NonAuthNavbar = () => (
   <>
     <Nav className="ml-auto">
       <Nav.Link href="#">
-        <NavLink className="nav-link" to={ROUTES.HOME_PAGE}>
+        <Link className="nav-link" to={ROUTES.HOME_PAGE}>
           Home <span className="sr-only">(current)</span>
-        </NavLink>
+        </Link>
       </Nav.Link>
       <Nav.Link href="#">
-        <NavLink className="nav-link" to={ROUTES.SIGN_IN}>
+        <Link className="nav-link" to={ROUTES.SIGN_IN}>
           Sign In
-        </NavLink>
+        </Link>
       </Nav.Link>
       <Nav.Link href="#">
-        <NavLink className="nav-link" to={ROUTES.SIGN_UP}>
+        <Link className="nav-link" to={ROUTES.SIGN_UP}>
           Sign Up
-        </NavLink>
+        </Link>
       </Nav.Link>
     </Nav>
   </>

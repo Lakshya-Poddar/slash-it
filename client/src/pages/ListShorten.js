@@ -96,7 +96,7 @@ const EachItem = ({ hash, url }) => (
           target="_blank"
           rel="noopener noreferrer"
           className="mb-1 list-style "
-        ><p>{`https://slashit.herokuapp.com/${hash}`}</p></a>
+        ><p>{`slashit.herokuapp.com/${hash}`}</p></a>
       </div>
       <div className="col-12 col-md-12 col-lg-6 ">
         <p className="mb-1 text-light">
