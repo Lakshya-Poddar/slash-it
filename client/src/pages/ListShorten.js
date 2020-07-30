@@ -92,11 +92,11 @@ const EachItem = ({ hash, url }) => (
     <div className="row">
       <div className="col-12 col-md-12 col-lg-4 ">
         <a
-          href={`https://siui.herokuapp.com/${hash}`}
+          href={`https://slashit.herokuapp.com/${hash}`}
           target="_blank"
           rel="noopener noreferrer"
           className="mb-1 list-style "
-        ><p>{`https://siui.herokuapp.com/${hash}`}</p></a>
+        ><p>{`https://slashit.herokuapp.com/${hash}`}</p></a>
       </div>
       <div className="col-12 col-md-12 col-lg-6 ">
         <p className="mb-1 text-light">

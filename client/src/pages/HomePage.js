@@ -10,7 +10,7 @@ export class HomePage extends Component {
         <h1 className="text-uppercase homepage-css text-center pb-5 pt-3">Customised<span> Url Shortner</span></h1>
         <h2 > </h2>
         <p className="text-center">Slash It is a free tool to shorten a URL.<br />
-          Create URL's which are easy to remember.</p>
+          Create URLs which are easy to remember.</p>
           <br />
           <br></br>
         {
