@@ -65,9 +65,9 @@ export class ListShorten extends Component {
         </div>
         <div className={!this.state.isLoading?"listbackground-css  pt-3 pt-md-5 mt-5 pb-2":"d-none"}>
           <div className="container">
-            <div className="list-group p-3 text-light  w-100  ">
+            <div className="list-group p-3 text-light  w-100  mt-5 ">
               {this.state.items.length === 0 ? (
-                <p className="text-center">NO ITEMS FOUND</p>
+                <p className="text-center  text-light">NO ITEMS FOUND</p>
               ) : (
                 this.state.items
                   .reverse()
