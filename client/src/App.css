@@ -14,7 +14,7 @@ p{
 /* Centering the element at center of page */
 .App-header {
   background-color: #d8d8d8;
-  min-height: 100vh;
+  min-height: 94vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -130,4 +130,10 @@ p{
 
   font-size: calc(7px + 2vmin);
   color: #000;
+}
+/* Footer  */
+.footer-css {
+  background-color: #0b0c10 !important;
+  height: 6vh;
+
 }

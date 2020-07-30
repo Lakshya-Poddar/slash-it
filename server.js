@@ -5,12 +5,14 @@ const mongoose = require("mongoose");
 const bodyparser = require("body-parser");
 const path = require("path");
 const cors = require("cors");
+const compression = require("compression");
 //import dotenv
 require("dotenv").config();
 //url
 const URL = require("./schemas/shortenschema");
 
 app.use(cors());
+app.use(compression());
 //bodyparser
 app.use(bodyparser.urlencoded({ extended: false }));
 app.use(bodyparser.json());

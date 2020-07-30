@@ -9,7 +9,7 @@ import SignUpPage from "./pages/SignUpPage";
 import { Route, Switch, Redirect } from "react-router-dom";
 import Navigation from "./pages/Navigation";
 import * as ROUTES from "./constants/routes";
-
+import Footer from './pages/Footer'
 function App() {
   return (
     <div>
@@ -23,6 +23,7 @@ function App() {
         <Route path="/" component={HomePage} />
         <Redirect to="/" />
       </Switch>
+      <Footer />
     </div>
   );
 }

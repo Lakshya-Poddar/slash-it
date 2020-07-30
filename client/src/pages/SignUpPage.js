@@ -85,7 +85,7 @@ export class SignUpPage extends Component {
           }
         >
           <h1 className="mb-3 signuptext-css pt-5">Sign Up</h1>
-          <small className="text-muted ">*Compulsary fields</small>
+          <small className="text-muted ">(*Compulsary fields)</small>
           <div className="my-2">
             <small className="text-danger text-center">
               {this.state.error}
