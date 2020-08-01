@@ -137,7 +137,7 @@ export class Shorten extends Component {
           />
         </div>
         <p className={this.state.output ? "p-2" : "d-none"}>
-          OUTPUT : <a href={this.state.output} style={{textDecoration:"none",color:"#45a29e"}}>{this.state.output}</a>
+          OUTPUT : <a href={this.state.output} target="_blank" style={{textDecoration:"none",color:"#45a29e"}}>{this.state.output}</a>
         </p>
       </div>
     );
