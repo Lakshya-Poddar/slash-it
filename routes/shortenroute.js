@@ -2,7 +2,10 @@ const router = require("express").Router();
 const URL = require("../schemas/shortenschema");
 const Verify = require("./verifyToken");
 const uniqid = require("uniqid");
+var mongoose = require("mongoose");
+var mongodb = require("mongodb");
 
+var ObjectId = mongoose.Types.ObjectId;
 //@route /shorten/test
 //@desc Test route
 //Public access
@@ -67,10 +70,9 @@ router.get("/list", Verify, (req, res) => {
   });
 });
 
-router.delete("/delete", (req, res) => {
-  URL.findByIdAndDelete({ _id: req.body.id }, (err, doc) => {
+router.post("/delete", Verify, (req, res) => {
+  URL.findByIdAndRemove({ _id: req.body.deleteid }, (err, doc) => {
     if (doc) {
-      console.log("doc", doc);
       return res.send(doc);
     } else {
       console.log("No such url present");

@@ -14,8 +14,9 @@ const URL = require("./schemas/shortenschema");
 app.use(cors());
 app.use(compression());
 //bodyparser
-app.use(bodyparser.urlencoded({ extended: false }));
 app.use(bodyparser.json());
+app.use(bodyparser.urlencoded({ extended: false }));
+
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("build"));

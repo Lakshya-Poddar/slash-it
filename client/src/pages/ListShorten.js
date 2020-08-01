@@ -14,8 +14,21 @@ export class ListShorten extends Component {
       isLoading: false,
     };
   }
-
+  handleDelete = (id) => {
+    axios
+      .post(
+        "/shorten/delete/",
+        { deleteid: id },
+        { headers: { "auth-shorten-token": getToken() } }
+      )
+      .then((resp) => {
+        this.loaddata();
+      });
+  };
   componentDidMount() {
+    this.loaddata();
+  }
+  loaddata = () => {
     this.setState({ isLoading: true });
     axios
       .get("/shorten/list", {
@@ -25,8 +38,7 @@ export class ListShorten extends Component {
         this.setState({ items: resp.data, isLoading: false });
       })
       .catch((err) => console.log("err", err));
-  }
-
+  };
   componentWillUnmount() {
     this.setState({ items: [] });
   }
@@ -63,7 +75,13 @@ export class ListShorten extends Component {
             timeout={500000000}
           />
         </div>
-        <div className={!this.state.isLoading?"listbackground-css  pt-3 pt-md-5  pb-2":"d-none"}>
+        <div
+          className={
+            !this.state.isLoading
+              ? "listbackground-css  pt-3 pt-md-5  pb-2"
+              : "d-none"
+          }
+        >
           <div className="container mt-5">
             <div className="list-group p-3 text-light  w-100  mt-5 ">
               {this.state.items.length === 0 ? (
@@ -76,6 +94,8 @@ export class ListShorten extends Component {
                       key={item._id}
                       hash={item.hashed}
                       url={item.longUrl}
+                      id={item._id}
+                      onclick={this.handleDelete}
                     />
                   ))
               )}
@@ -87,7 +107,7 @@ export class ListShorten extends Component {
   }
 }
 
-const EachItem = ({ hash, url }) => (
+const EachItem = ({ hash, url, id, onclick }) => (
   <div className="list-group-item my-1 mx-2 list-group-item-action flex-column align-items-center active ">
     <div className="row">
       <div className="col-12 col-md-12 col-lg-4 ">
@@ -96,9 +116,11 @@ const EachItem = ({ hash, url }) => (
           target="_blank"
           rel="noopener noreferrer"
           className="mb-1 list-style "
-        ><p>{`slashit.herokuapp.com/${hash}`}</p></a>
+        >
+          <p>{`slashit.herokuapp.com/${hash}`}</p>
+        </a>
       </div>
-      <div className="col-12 col-md-12 col-lg-6 ">
+      <div className="col-12 col-md-12 col-lg-5 ">
         <p className="mb-1 text-light">
           {`URL : `}
           <span className="list-style-dark">{`${url}`}</span>
@@ -109,6 +131,14 @@ const EachItem = ({ hash, url }) => (
           {`Hash : `}
           <span className="list-style">{`${hash}`}</span>
         </p>
+      </div>
+      <div className="col-12 col-md-12 col-lg-1 ">
+        <button
+          className="btn btn-outline-danger"
+          onClick={() => onclick(id)}
+        >
+          <i class="fa fa-trash-o text-light" aria-hidden="true"></i>
+        </button>
       </div>
     </div>
   </div>
