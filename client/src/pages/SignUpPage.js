@@ -84,7 +84,7 @@ export class SignUpPage extends Component {
             this.state.isLoading ? "d-none" : "App-header text-center  p-5"
           }
         >
-          <h1 className="mb-3 signuptext-css pt-5">Sign Up</h1>
+          <h1 className="mb-3 signuptext-css pt-4">Sign Up</h1>
           <small className="text-muted ">(*Compulsary fields)</small>
           <div className="my-2">
             <small className="text-danger text-center">
