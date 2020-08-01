@@ -22,8 +22,10 @@ export class ListShorten extends Component {
         { headers: { "auth-shorten-token": getToken() } }
       )
       .then((resp) => {
+        alert("Deleted Successfully!");
         this.loaddata();
-      });
+      })
+      .catch((err) => alert(err));
   };
   componentDidMount() {
     this.loaddata();
@@ -133,10 +135,7 @@ const EachItem = ({ hash, url, id, onclick }) => (
         </p>
       </div>
       <div className="col-12 col-md-12 col-lg-1 ">
-        <button
-          className="btn btn-outline-danger"
-          onClick={() => onclick(id)}
-        >
+        <button className="btn btn-outline-danger" onClick={() => onclick(id)}>
           <i class="fa fa-trash-o text-light" aria-hidden="true"></i>
         </button>
       </div>
