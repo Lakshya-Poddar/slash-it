@@ -22,8 +22,8 @@ export class ListShorten extends Component {
         { headers: { "auth-shorten-token": getToken() } }
       )
       .then((resp) => {
-        alert("Deleted Successfully!");
         this.loaddata();
+        alert("Deleted Successfully!");
       })
       .catch((err) => alert(err));
   };
