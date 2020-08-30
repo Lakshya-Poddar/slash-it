@@ -17,7 +17,6 @@ app.use(compression());
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({ extended: false }));
 
-
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("build"));
   app.use((req, res, next) => {
@@ -37,25 +36,6 @@ mongoose
   })
   .then(() => console.log("CONNECTED TO MONGODB"))
   .catch((err) => console.log(err));
-//serve static assets if in production
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
-  app.get("/signinuser", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
-  });
-  app.get("/signupuser", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
-  });
-  app.get("/shortenurl", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
-  });
-  app.get("/allshort", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
-  });
-  app.get("/", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
-  });
-}
 
 //routing every one accessing the server
 app.get("/:hash", (req, res) => {
@@ -93,3 +73,23 @@ if (process.env.NODE_ENV === "production") {
 //server
 const port = process.env.PORT || 5000;
 app.listen(port, () => console.log(`SERVER RUNNING ON PORT ${port}`));
+
+//serve static assets if in production
+// if (process.env.NODE_ENV === "production") {
+//   app.use(express.static("client/build"));
+//   app.get("/signinuser", (req, res) => {
+//     res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+//   });
+//   app.get("/signupuser", (req, res) => {
+//     res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+//   });
+//   app.get("/shortenurl", (req, res) => {
+//     res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+//   });
+//   app.get("/allshort", (req, res) => {
+//     res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+//   });
+//   app.get("/", (req, res) => {
+//     res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+//   });
+// }

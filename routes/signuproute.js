@@ -29,7 +29,6 @@ router.post("/", (req, res) => {
         token: null,
       });
     }
-
     //hashing password
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(req.body.password, salt);
@@ -61,5 +60,4 @@ router.post("/", (req, res) => {
       });
   });
 });
-
 module.exports = router;

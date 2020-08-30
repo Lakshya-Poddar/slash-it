@@ -1,6 +1,7 @@
 import React, { Component, useContext } from "react";
 import { NavLink, withRouter, Link } from "react-router-dom";
 import * as ROUTES from "../constants/routes";
+import logo from "../../src/logo.png";
 import { removeUserSession } from "../utils/Common";
 import { Context } from "../context";
 import { Navbar, Nav } from "react-bootstrap";
@@ -16,12 +17,11 @@ export class Navigation extends Component {
         expand="lg"
         variant="dark"
         fixed="top"
-      >
+      ><img src={logo} alt="SlashIt Logo" style={{height:"10vh"}} />
         <Navbar.Brand>
-        <Link className="nav-link" to={ROUTES.HOME_PAGE}>
-        <b>Slash It</b>
+          <Link className="nav-link" to={ROUTES.HOME_PAGE}>
+            <b>Slash It</b>
           </Link>
-          
         </Navbar.Brand>
         <Navbar.Toggle
           className="toogle-css"

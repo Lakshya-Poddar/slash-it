@@ -3,9 +3,6 @@ const URL = require("../schemas/shortenschema");
 const Verify = require("./verifyToken");
 const uniqid = require("uniqid");
 var mongoose = require("mongoose");
-var mongodb = require("mongodb");
-
-var ObjectId = mongoose.Types.ObjectId;
 //@route /shorten/test
 //@desc Test route
 //Public access
