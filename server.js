@@ -6,6 +6,7 @@ const bodyparser = require("body-parser");
 const path = require("path");
 const cors = require("cors");
 const compression = require("compression");
+const favicon = require("serve-favicon");
 //import dotenv
 require("dotenv").config();
 //url
@@ -16,6 +17,9 @@ app.use(compression());
 //bodyparser
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({ extended: false }));
+app.use(
+  favicon(path.join(__dirname,"client", "public", "favicon.ico"))
+);
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("build"));
