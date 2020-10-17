@@ -13,10 +13,13 @@ Project was bootstrapped with *[Create React App](https://github.com/facebook/cr
 
     `npm install && npm install --prefix client` 
     
+    
 - Make a **.env** file and provide these details:
 
     `MONGO_URI = [Your mongoDB database URL]`
+    
     `TOKEN_SECRET = [A secret token for encrypting the user password]`
+    
 
 - Start the development server
 
