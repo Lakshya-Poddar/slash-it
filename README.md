@@ -1,6 +1,6 @@
 ## SLASH-IT
 Who likes long, boring URLs? [**Slash-It**](https://slashit.herokuapp.com) has come for the rescue. It allows the user to customise the url `(https://slashit.herokuapp.com/<hash>)`  according to the need.
->>*`/<hash>` is what we want to acess the long URL with*
+>*`/<hash>` is what we want to acess the long URL with*
 
 Project was bootstrapped with *[Create React App](https://github.com/facebook/create-react-app)*.
 
